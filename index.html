@@ -1,261 +1,233 @@
 
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ELECTRO | Smart Home Store</title>
+<title>VOLTEX | معرض الأجهزة الكهربائية</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root {
-    --bg: #080d16;
-    --card: #111a29;
-    --primary: #00d4ff;
-    --secondary: #7c5cff;
+    --bg: #080d18;
+    --card: #111b2c;
+    --primary: #00e5ff;
+    --secondary: #7c4dff;
     --white: #f5f8ff;
-    --muted: #929eb1;
+    --muted: #a4afc2;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
+    font-family: 'Cairo', sans-serif;
     background: var(--bg);
     color: var(--white);
-    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
-a { text-decoration: none; color: inherit; }
-button { font-family: inherit; cursor: pointer; }
+/* Animated Background */
 
-/* NAVBAR */
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(circle at 15% 20%, #123c5860, transparent 35%),
+      radial-gradient(circle at 85% 70%, #5728a340, transparent 35%),
+      linear-gradient(135deg,#080d18,#101a2b,#080d18);
+    background-size: 200% 200%;
+    animation: backgroundMove 12s ease infinite;
+}
 
-.navbar {
-    height: 85px;
-    padding: 0 8%;
+@keyframes backgroundMove {
+    0%,100% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+}
+
+.orb {
+    position: fixed;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: #00e5ff15;
+    filter: blur(75px);
+    z-index: -1;
+    animation: float 9s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+.orb.one {top: 15%; left: -100px;}
+.orb.two {bottom: 10%; right: -100px; background: #884dff20;}
+
+@keyframes float {
+    to {transform: translate(100px,-70px) scale(1.3);}
+}
+
+/* Navbar */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 15px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(8,13,22,.92);
+    background: #080d18dd;
     backdrop-filter: blur(20px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid #ffffff12;
 }
 
 .logo {
     font-size: 27px;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
-.logo span { color: var(--primary); }
+.logo span {color: var(--primary);}
 
-.nav-links {
+nav ul {
     display: flex;
-    gap: 35px;
     list-style: none;
+    gap: 30px;
 }
 
-.nav-links a {
-    font-size: 13px;
-    color: var(--muted);
+nav ul a {
+    color: #cbd5e5;
+    text-decoration: none;
+    font-size: 14px;
     transition: .3s;
 }
 
-.nav-links a:hover { color: var(--primary); }
+nav ul a:hover {color: var(--primary);}
 
-.nav-actions {
+.nav-icons {
     display: flex;
-    align-items: center;
     gap: 20px;
+    font-size: 19px;
 }
 
-.cart {
-    position: relative;
-    font-size: 23px;
-    background: none;
-    border: none;
-    color: white;
-}
+.nav-icons i {cursor: pointer; transition: .3s;}
+.nav-icons i:hover {color: var(--primary);}
 
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    background: var(--primary);
-    color: #080d16;
-    font-size: 10px;
-    font-weight: 900;
-    padding: 3px 6px;
-    border-radius: 50%;
-}
-
-.menu-btn {
-    display: none;
-    background: none;
-    color: white;
-    border: none;
-    font-size: 25px;
-}
-
-/* HERO */
+/* Hero */
 
 .hero {
-    min-height: 650px;
+    min-height: 620px;
     padding: 80px 8%;
     display: flex;
     align-items: center;
-    position: relative;
-    overflow: hidden;
-    background:
-    linear-gradient(90deg, #080d16 0%, rgba(8,13,22,.95) 35%, rgba(8,13,22,.2) 100%),
-    url('https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1800&q=85')
-    center/cover;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: var(--primary);
-    filter: blur(180px);
-    opacity: .15;
-    right: 10%;
+    justify-content: space-between;
+    gap: 35px;
 }
 
 .hero-content {
-    max-width: 620px;
-    position: relative;
-    z-index: 2;
-    animation: slideUp 1s ease;
+    max-width: 570px;
+    animation: slideRight 1s ease;
+}
+
+@keyframes slideRight {
+    from {opacity:0; transform:translateX(60px);}
+    to {opacity:1; transform:translateX(0);}
 }
 
 .tag {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid #00e5ff55;
     color: var(--primary);
-    font-size: 12px;
-    letter-spacing: 4px;
-    font-weight: 700;
+    border-radius: 30px;
+    font-size: 13px;
     margin-bottom: 25px;
+    background: #00e5ff10;
 }
 
 .hero h1 {
-    font-size: clamp(45px, 6vw, 78px);
-    line-height: 1.08;
+    font-size: clamp(38px,5vw,65px);
     font-weight: 900;
-    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 .hero h1 span {
-    color: var(--primary);
+    background: linear-gradient(90deg,#00e5ff,#9674ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .hero p {
-    color: #bac4d3;
-    line-height: 1.9;
-    max-width: 480px;
-    margin-bottom: 35px;
+    color: var(--muted);
+    line-height: 2.2;
+    margin: 20px 0 30px;
     font-size: 15px;
 }
 
 .btn {
     display: inline-block;
-    padding: 16px 30px;
-    background: var(--primary);
-    color: #07111c;
-    border-radius: 5px;
+    text-decoration: none;
+    background: linear-gradient(100deg,#00c9e8,#6254ff);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 10px;
     font-weight: 800;
-    font-size: 13px;
-    transition: .3s;
-    border: none;
+    transition: .4s;
+    box-shadow: 0 8px 30px #00d9ff30;
 }
 
 .btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,212,255,.3);
+    box-shadow: 0 10px 40px #00d9ff65;
 }
 
-.hero-note {
-    margin-top: 25px;
-    color: #aab4c4;
-    font-size: 11px;
-    letter-spacing: 2px;
+.hero-image {
+    width: 48%;
+    position: relative;
+    animation: imageFloat 4s ease-in-out infinite;
 }
 
-/* FEATURES */
-
-.features {
-    padding: 35px 8%;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
-    background: #0d1420;
-    border-bottom: 1px solid rgba(255,255,255,.05);
+.hero-image img {
+    width: 100%;
+    filter: drop-shadow(0 20px 40px #00cfff30);
+    border-radius: 25px;
 }
 
-.feature {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+@keyframes imageFloat {
+    0%,100% {transform:translateY(0);}
+    50% {transform:translateY(-18px);}
 }
 
-.feature-icon {
-    width: 45px;
-    height: 45px;
-    display: grid;
-    place-items: center;
-    background: rgba(0,212,255,.1);
-    border-radius: 10px;
-    font-size: 21px;
-}
+/* General Sections */
 
-.feature h4 { font-size: 13px; margin-bottom: 5px; }
-.feature p { font-size: 10px; color: var(--muted); }
+section {padding: 75px 8%;}
 
-/* SECTION */
-
-.section {
-    padding: 100px 8%;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
+.section-heading {
+    text-align: center;
     margin-bottom: 45px;
 }
 
-.section-label {
-    color: var(--primary);
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-bottom: 15px;
+.section-heading h2 {
+    font-size: 34px;
+    font-weight: 900;
 }
 
-.section h2 {
-    font-size: clamp(28px,4vw,42px);
-    font-weight: 800;
-}
+.section-heading h2 span {color: var(--primary);}
 
-.section-desc {
+.section-heading p {
     color: var(--muted);
-    font-size: 13px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
-/* CATEGORIES */
+/* Categories */
 
 .categories {
     display: grid;
@@ -264,226 +236,313 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .category {
-    height: 220px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
+    background: linear-gradient(145deg,#15243a,#101827);
+    padding: 30px 15px;
+    text-align: center;
+    border-radius: 18px;
+    border: 1px solid #ffffff12;
+    transition: .4s;
     cursor: pointer;
 }
 
-.category img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: .7s;
-    filter: brightness(.65);
+.category:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 35px #00e5ff15;
 }
 
-.category:hover img {
-    transform: scale(1.12);
-    filter: brightness(.4);
+.category i {
+    font-size: 38px;
+    color: var(--primary);
+    margin-bottom: 15px;
 }
 
-.category-info {
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-}
+.category h3 {font-size: 16px;}
 
-.category-info h3 { font-size: 19px; margin-bottom: 7px; }
-.category-info span { color: var(--primary); font-size: 11px; }
-
-/* PRODUCTS */
+/* Products */
 
 .products {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 22px;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
 }
 
 .product {
-    background: var(--card);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 12px;
+    background: linear-gradient(145deg,#17243a,#101827);
+    border: 1px solid #ffffff12;
+    border-radius: 20px;
     overflow: hidden;
     transition: .4s;
+    position: relative;
 }
 
 .product:hover {
-    transform: translateY(-10px);
-    border-color: rgba(0,212,255,.5);
-    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    transform: translateY(-12px);
+    border-color: #00e5ff70;
+    box-shadow: 0 15px 40px #0008;
 }
 
-.product-img {
-    height: 230px;
-    background: #172235;
-    position: relative;
+.product-image {
+    height: 240px;
+    background: #ffffff08;
     overflow: hidden;
+    position: relative;
 }
 
-.product-img img {
+.product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: .6s;
+    object-fit: contain;
+    padding: 15px;
+    transition: .5s;
 }
 
-.product:hover .product-img img { transform: scale(1.08); }
+.product:hover img {transform:scale(1.1);}
 
 .discount {
     position: absolute;
     top: 15px;
-    left: 15px;
-    background: var(--secondary);
-    padding: 7px 10px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 800;
-}
-
-.product-info { padding: 20px; }
-
-.product-category {
-    color: var(--primary);
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-}
-
-.product-info h3 {
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.rating {
-    color: #ffc857;
+    right: 15px;
+    background: #ff426d;
+    padding: 5px 12px;
+    border-radius: 7px;
     font-size: 12px;
-    margin-bottom: 18px;
 }
+
+.product-info {padding: 22px;}
+
+.product-info h3 {font-size: 17px;}
+
+.product-info p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 8px 0;
+}
+
+.stars {color: #ffc857; font-size: 13px;}
 
 .price {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.price strong { font-size: 18px; color: var(--primary); }
-.price del { font-size: 12px; color: #788397; }
-
-.add-btn {
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    border: 1px solid var(--primary);
+    margin: 15px 0;
+    font-size: 21px;
     color: var(--primary);
-    border-radius: 5px;
-    font-weight: 700;
+    font-weight: 900;
+}
+
+.old-price {
+    color: #8992a4;
+    text-decoration: line-through;
+    font-size: 13px;
+    margin-right: 8px;
+}
+
+.buy-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 11px;
+    border-radius: 9px;
+    background: #00e5ff15;
+    color: var(--primary);
+    border: 1px solid #00e5ff40;
     transition: .3s;
+    font-weight: 700;
 }
 
-.add-btn:hover {
+.buy-btn:hover {
     background: var(--primary);
-    color: #080d16;
+    color: #08111d;
 }
 
-/* PROMO */
+/* Special Offer */
 
-.promo {
-    margin: 0 8%;
-    padding: 65px;
-    border-radius: 15px;
-    background:
-    linear-gradient(90deg,rgba(8,13,22,.98),rgba(8,13,22,.4)),
-    url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=85')
-    center/cover;
+.offer {
+    margin: 30px 8%;
+    padding: 55px;
+    border-radius: 25px;
+    background: linear-gradient(110deg,#123d55,#32205c);
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 25px;
+    overflow: hidden;
+    position: relative;
 }
 
-.promo-content { max-width: 500px; }
-.promo h2 { font-size: 38px; margin: 20px 0; line-height: 1.2; }
-.promo p { color: #b8c2d0; line-height: 1.8; margin-bottom: 25px; }
+.offer:before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #00e5ff25;
+    border-radius: 50%;
+    filter: blur(60px);
+    left: 10%;
+    top: -100px;
+}
 
-/* NEWSLETTER */
+.offer h2 {font-size: 32px; font-weight: 900;}
+.offer p {color: #d0d8e9; margin: 12px 0 20px;}
+.offer img {width: 230px; position: relative; z-index: 1;}
 
-.newsletter {
-    margin-top: 100px;
-    padding: 80px 8%;
-    background: #101a29;
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
     text-align: center;
 }
 
-.newsletter h2 { font-size: 32px; margin-bottom: 15px; }
-.newsletter p { color: var(--muted); margin-bottom: 30px; font-size: 13px; }
-
-.newsletter form {
-    max-width: 480px;
-    display: flex;
-    margin: auto;
+.stat {
+    padding: 25px;
+    background: #ffffff08;
+    border-radius: 15px;
+    border: 1px solid #ffffff10;
 }
+
+.stat h2 {
+    font-size: 35px;
+    color: var(--primary);
+}
+
+.stat p {color: var(--muted); font-size: 14px;}
+
+/* Reviews */
+
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.review {
+    padding: 25px;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid #ffffff10;
+}
+
+.review p {
+    color: #c3cde0;
+    line-height: 2;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.review h4 {color: var(--primary);}
+
+/* Newsletter */
+
+.newsletter {
+    text-align: center;
+    background: linear-gradient(120deg,#112b40,#21183c);
+    border-radius: 20px;
+    padding: 55px 20px;
+}
+
+.newsletter p {color: var(--muted); margin: 10px 0 25px;}
 
 .newsletter input {
-    flex: 1;
-    min-width: 0;
-    padding: 16px;
-    border: 1px solid #263449;
-    background: #080d16;
+    padding: 14px;
+    width: min(320px,70%);
+    background: #080d18;
+    border: 1px solid #ffffff20;
+    border-radius: 8px;
     color: white;
-    outline: none;
+    font-family: inherit;
 }
 
-.newsletter button { border-radius: 0 5px 5px 0; }
+.newsletter button {
+    padding: 14px 23px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #08111d;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+}
 
-/* FOOTER */
+/* Footer */
 
 footer {
-    padding: 55px 8%;
-    background: #070b12;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
+    padding: 50px 8% 20px;
+    background: #060a12;
+    border-top: 1px solid #ffffff12;
 }
 
-.footer-text {
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 35px;
+}
+
+footer p {
     color: var(--muted);
-    font-size: 12px;
     line-height: 2;
-    max-width: 300px;
     margin-top: 15px;
+    font-size: 14px;
 }
 
-.footer-links h4 { margin-bottom: 20px; }
-.footer-links a {
+footer h3 {margin-bottom: 15px;}
+
+footer a {
     display: block;
     color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 12px;
+    text-decoration: none;
+    margin: 10px 0;
+    transition: .3s;
 }
 
-.footer-links a:hover { color: var(--primary); }
+footer a:hover {color: var(--primary);}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.socials a {font-size: 20px;}
 
 .copyright {
-    width: 100%;
-    padding-top: 25px;
-    border-top: 1px solid #1c2737;
-    color: #667286;
-    font-size: 11px;
+    border-top: 1px solid #ffffff15;
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 35px;
 }
 
-/* ANIMATIONS */
+/* WhatsApp */
 
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(35px); }
-    to { opacity: 1; transform: translateY(0); }
+.whatsapp {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 58px;
+    height: 58px;
+    background: #25d366;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 29px;
+    text-decoration: none;
+    z-index: 99;
+    box-shadow: 0 5px 25px #25d36655;
+    animation: pulse 2s infinite;
 }
+
+@keyframes pulse {
+    0%,100% {box-shadow:0 0 0 0 #25d36665;}
+    50% {box-shadow:0 0 0 15px #25d36600;}
+}
+
+/* Scroll Reveal */
 
 .reveal {
     opacity: 0;
     transform: translateY(35px);
-    transition: opacity .8s, transform .8s;
+    transition: all .8s ease;
 }
 
 .reveal.active {
@@ -491,330 +550,437 @@ footer {
     transform: translateY(0);
 }
 
-/* RESPONSIVE */
+/* Responsive */
 
-@media(max-width:1000px) {
-    .products { grid-template-columns: repeat(2,1fr); }
-    .categories { grid-template-columns: repeat(2,1fr); }
-    .features { grid-template-columns: repeat(2,1fr); }
+@media(max-width:900px) {
+    nav ul {gap: 12px;}
+    .hero {flex-direction:column; text-align:center;}
+    .hero-image {width:80%;}
+    .categories {grid-template-columns:repeat(2,1fr);}
+    .products {grid-template-columns:repeat(2,1fr);}
+    .reviews {grid-template-columns:1fr 1fr;}
 }
 
-@media(max-width:650px) {
-    .navbar { padding: 0 5%; height: 70px; }
-    .menu-btn { display: block; }
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        padding: 25px;
-        background: #101a29;
-        flex-direction: column;
-        gap: 25px;
-    }
-    .nav-links.show { display: flex; }
-    .hero { min-height: 550px; padding: 60px 6%; }
-    .section { padding: 65px 6%; }
-    .products { grid-template-columns: repeat(2,1fr); gap: 12px; }
-    .product-img { height: 160px; }
-    .product-info { padding: 12px; }
-    .product-info h3 { font-size: 12px; }
-    .price strong { font-size: 14px; }
-    .categories { gap: 12px; }
-    .category { height: 160px; }
-    .category-info { left: 12px; bottom: 15px; }
-    .category-info h3 { font-size: 14px; }
-    .features { padding: 25px 6%; gap: 20px 10px; }
-    .feature h4 { font-size: 11px; }
-    .feature p { font-size: 9px; }
-    .promo { margin: 0 5%; padding: 40px 25px; }
-    .promo h2 { font-size: 28px; }
-    .section-header { align-items: start; }
-    .newsletter form { flex-direction: column; gap: 10px; }
-    .newsletter button { border-radius: 5px; }
+@media(max-width:600px) {
+    nav {padding:15px 5%;}
+    nav ul {display:none;}
+    .hero {padding:60px 6%;}
+    .hero h1 {font-size:38px;}
+    .hero-image {width:100%;}
+    section {padding:55px 6%;}
+    .products {grid-template-columns:1fr;}
+    .reviews {grid-template-columns:1fr;}
+    .categories {grid-template-columns:1fr 1fr;}
+    .offer {margin:20px 5%; padding:30px 20px; flex-direction:column; text-align:center;}
+    .offer img {width:170px;}
+    .stats {grid-template-columns:1fr 1fr;}
+    .footer-content {grid-template-columns:1fr;}
+    .newsletter input {width:100%; margin-bottom:12px;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <a href="#" class="logo">ELEC<span>TRO.</span></a>
+<div class="background"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
 
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">About Us</a></li>
+<!-- Navbar -->
+
+<nav>
+    <div class="logo">VOL<span>TEX.</span></div>
+
+    <ul>
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#categories">الأقسام</a></li>
+        <li><a href="#products">المنتجات</a></li>
+        <li><a href="#reviews">آراء العملاء</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
     </ul>
 
-    <div class="nav-actions">
-        <button class="cart" aria-label="Shopping cart">
-            🛒 <span class="cart-count" id="cartCount">0</span>
-        </button>
-        <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="nav-icons">
+        <i class="fas fa-search" title="بحث"></i>
+        <i class="fas fa-shopping-cart" title="السلة"></i>
     </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="home">
-    <div class="hero-content">
-        <div class="tag">THE FUTURE OF HOME LIVING</div>
+<!-- Hero -->
 
-        <h1>Upgrade Your<br>Home With <span>Smart</span><br>Technology.</h1>
+<header class="hero" id="home">
+
+    <div class="hero-content">
+        <span class="tag">
+            <i class="fas fa-bolt"></i>
+            عالم التكنولوجيا بين إيديك
+        </span>
+
+        <h1>
+            بيتك يستحق<br>
+            <span>تكنولوجيا أفضل</span>
+        </h1>
 
         <p>
-            Discover premium home appliances designed to make
-            your life easier, smarter and more comfortable.
-            Experience innovation in every detail.
+            اكتشف أحدث الأجهزة الكهربائية والمنزلية بأفضل الأسعار.
+            جودة عالية، تصميم عصري، وعروض مميزة تجعل حياتك أسهل.
         </p>
 
-        <a href="#products" class="btn">EXPLORE PRODUCTS →</a>
-
-        <div class="hero-note">PREMIUM QUALITY • SMART LIVING • BEST PRICES</div>
+        <a href="#products" class="btn">
+            اكتشف المنتجات <i class="fas fa-arrow-left"></i>
+        </a>
     </div>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=1000" alt="أجهزة منزلية">
+    </div>
+
 </header>
 
-<!-- FEATURES -->
-<section class="features">
-    <div class="feature">
-        <div class="feature-icon">🚚</div>
-        <div><h4>Free Delivery</h4><p>On selected orders</p></div>
-    </div>
-    <div class="feature">
-        <div class="feature-icon">🛡️</div>
-        <div><h4>Official Warranty</h4><p>100% authentic products</p></div>
-    </div>
-    <div class="feature">
-        <div class="feature-icon">💳</div>
-        <div><h4>Secure Payment</h4><p>Safe checkout experience</p></div>
-    </div>
-    <div class="feature">
-        <div class="feature-icon">🎧</div>
-        <div><h4>24/7 Support</h4><p>We're here to help</p></div>
-    </div>
-</section>
+<!-- Categories -->
 
-<!-- CATEGORIES -->
-<section class="section" id="categories">
-    <div class="section-header reveal">
-        <div>
-            <div class="section-label">EXPLORE OUR COLLECTION</div>
-            <h2>Shop By Category</h2>
-            <p class="section-desc">Find the perfect appliances for every corner of your home.</p>
-        </div>
+<section id="categories" class="reveal">
+
+    <div class="section-heading">
+        <h2>تسوق حسب <span>القسم</span></h2>
+        <p>كل احتياجات منزلك في مكان واحد</p>
     </div>
 
     <div class="categories">
-        <div class="category reveal">
-            <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80" alt="Washing machines" loading="lazy">
-            <div class="category-info"><h3>Washing Machines</h3><span>EXPLORE →</span></div>
+
+        <div class="category">
+            <i class="fas fa-snowflake"></i>
+            <h3>التكييفات</h3>
         </div>
 
-        <div class="category reveal">
-            <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80" alt="Refrigerators" loading="lazy">
-            <div class="category-info"><h3>Refrigerators</h3><span>EXPLORE →</span></div>
+        <div class="category">
+            <i class="fas fa-temperature-low"></i>
+            <h3>الثلاجات</h3>
         </div>
 
-        <div class="category reveal">
-            <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80" alt="Smart TVs" loading="lazy">
-            <div class="category-info"><h3>Smart TVs</h3><span>EXPLORE →</span></div>
+        <div class="category">
+            <i class="fas fa-tv"></i>
+            <h3>الشاشات</h3>
         </div>
 
-        <div class="category reveal">
-            <img src="https://images.unsplash.com/photo-1631545806609-8b5b4e5c3d3b?auto=format&fit=crop&w=700&q=80" alt="Kitchen appliances" loading="lazy">
-            <div class="category-info"><h3>Home Appliances</h3><span>EXPLORE →</span></div>
+        <div class="category">
+            <i class="fas fa-soap"></i>
+            <h3>الغسالات</h3>
         </div>
+
     </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="section" id="products" style="background:#0c131f;">
-    <div class="section-header reveal">
-        <div>
-            <div class="section-label">BEST SELLING PRODUCTS</div>
-            <h2>Featured Products</h2>
-            <p class="section-desc">Quality products. Exceptional performance. Smart prices.</p>
-        </div>
+<!-- Products -->
+
+<section id="products" class="reveal">
+
+    <div class="section-heading">
+        <h2>منتجات <span>مميزة</span></h2>
+        <p>اختياراتنا الأفضل ليك</p>
     </div>
 
     <div class="products">
 
-        <div class="product reveal">
-            <div class="product-img">
-                <span class="discount">-20%</span>
-                <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=85" alt="Washing machine" loading="lazy">
+        <div class="product">
+            <div class="product-image">
+                <span class="discount">خصم 20%</span>
+                <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=700" alt="غسالة">
             </div>
             <div class="product-info">
-                <div class="product-category">LAUNDRY</div>
-                <h3>Premium Washing Machine</h3>
-                <div class="rating">★★★★★ <span style="color:#8994a7;">(120)</span></div>
-                <div class="price"><strong>EGP 18,500</strong><del>EGP 23,000</del></div>
-                <button class="add-btn">ADD TO CART +</button>
+                <h3>غسالة أوتوماتيك</h3>
+                <p>غسيل ذكي بأحدث التقنيات</p>
+                <div class="stars">★★★★★</div>
+                <div class="price">18,500 ج.م <span class="old-price">23,000</span></div>
+                <a class="buy-btn" href="#contact">اطلب الآن</a>
             </div>
         </div>
 
-        <div class="product reveal">
-            <div class="product-img">
-                <span class="discount">-15%</span>
-                <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=85" alt="Refrigerator" loading="lazy">
+        <div class="product">
+            <div class="product-image">
+                <span class="discount">الأكثر مبيعاً</span>
+                <img src="https://images.unsplash.com/photo-1572085313466-6710de8d7ba3?w=700" alt="ثلاجة">
             </div>
             <div class="product-info">
-                <div class="product-category">REFRIGERATION</div>
-                <h3>Modern Smart Refrigerator</h3>
-                <div class="rating">★★★★★ <span style="color:#8994a7;">(98)</span></div>
-                <div class="price"><strong>EGP 32,000</strong><del>EGP 38,000</del></div>
-                <button class="add-btn">ADD TO CART +</button>
+                <h3>ثلاجة عصرية</h3>
+                <p>تبريد مثالي وتوفير للطاقة</p>
+                <div class="stars">★★★★★</div>
+                <div class="price">29,999 ج.م</div>
+                <a class="buy-btn" href="#contact">اطلب الآن</a>
             </div>
         </div>
 
-        <div class="product reveal">
-            <div class="product-img">
-                <span class="discount">-10%</span>
-                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=85" alt="Smart television" loading="lazy">
+        <div class="product">
+            <div class="product-image">
+                <span class="discount">خصم 15%</span>
+                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=700" alt="شاشة">
             </div>
             <div class="product-info">
-                <div class="product-category">ENTERTAINMENT</div>
-                <h3>4K Ultra HD Smart TV</h3>
-                <div class="rating">★★★★★ <span style="color:#8994a7;">(150)</span></div>
-                <div class="price"><strong>EGP 25,000</strong><del>EGP 28,000</del></div>
-                <button class="add-btn">ADD TO CART +</button>
+                <h3>شاشة Smart TV</h3>
+                <p>تجربة مشاهدة بجودة مذهلة</p>
+                <div class="stars">★★★★★</div>
+                <div class="price">15,999 ج.م</div>
+                <a class="buy-btn" href="#contact">اطلب الآن</a>
             </div>
         </div>
 
-        <div class="product reveal">
-            <div class="product-img">
-                <span class="discount">-25%</span>
-                <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=85" alt="Kitchen appliances" loading="lazy">
+        <div class="product">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1631545806609-0b6f4c7b7c9e?w=700" alt="ميكروويف">
             </div>
             <div class="product-info">
-                <div class="product-category">KITCHEN</div>
-                <h3>Premium Kitchen Collection</h3>
-                <div class="rating">★★★★★ <span style="color:#8994a7;">(85)</span></div>
-                <div class="price"><strong>EGP 12,500</strong><del>EGP 16,500</del></div>
-                <button class="add-btn">ADD TO CART +</button>
+                <h3>ميكروويف حديث</h3>
+                <p>سهولة وسرعة في الاستخدام</p>
+                <div class="stars">★★★★★</div>
+                <div class="price">6,499 ج.م</div>
+                <a class="buy-btn" href="#contact">اطلب الآن</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=700" alt="غسالة أطباق">
+            </div>
+            <div class="product-info">
+                <h3>غسالة أطباق</h3>
+                <p>نظافة مثالية بأقل مجهود</p>
+                <div class="stars">★★★★★</div>
+                <div class="price">12,500 ج.م</div>
+                <a class="buy-btn" href="#contact">اطلب الآن</a>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="product-image">
+                <span class="discount">عرض خاص</span>
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700" alt="تكييف">
+            </div>
+            <div class="product-info">
+                <h3>تكييف منزلي</h3>
+                <p>تبريد قوي وراحة طوال الصيف</p>
+                <div class="stars">★★★★★</div>
+                <div class="price">24,999 ج.م</div>
+                <a class="buy-btn" href="#contact">اطلب الآن</a>
             </div>
         </div>
 
     </div>
 </section>
 
-<!-- PROMOTION -->
-<section class="promo reveal" id="about">
-    <div class="promo-content">
-        <div class="section-label">SPECIAL COLLECTION</div>
-        <h2>Make Your Home Smarter Than Ever.</h2>
-        <p>
-            Discover a new standard of comfort with our
-            carefully selected home appliances.
-        </p>
-        <a href="#products" class="btn">SHOP NOW →</a>
-    </div>
-</section>
+<!-- Offer -->
 
-<!-- NEWSLETTER -->
-<section class="newsletter">
-    <div class="section-label">STAY CONNECTED</div>
-    <h2>Get Exclusive Offers</h2>
-    <p>Subscribe to our newsletter and never miss our latest deals.</p>
-    <form id="newsletterForm">
-        <input type="email" placeholder="Enter your email address" required>
-        <button type="submit" class="btn">SUBSCRIBE</button>
-    </form>
-</section>
+<div class="offer reveal">
 
-<!-- FOOTER -->
-<footer>
     <div>
-        <a href="#" class="logo">ELEC<span>TRO.</span></a>
-        <p class="footer-text">
-            Bringing innovation and smart technology
-            to every home. Discover quality, reliability
-            and exceptional shopping experiences.
-        </p>
+        <span class="tag">عرض لفترة محدودة</span>
+        <h2>جهز بيتك بأفضل سعر!</h2>
+        <p>استمتع بعروضنا المميزة على مجموعة مختارة من الأجهزة.</p>
+        <a href="#products" class="btn">شاهد العروض</a>
     </div>
 
-    <div class="footer-links">
-        <h4>Quick Links</h4>
-        <a href="#home">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#products">Products</a>
-        <a href="#about">About Us</a>
+    <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600" alt="عرض الأجهزة">
+
+</div>
+
+<!-- Stats -->
+
+<section class="reveal">
+
+    <div class="stats">
+
+        <div class="stat">
+            <h2 class="counter" data-target="5000">0</h2>
+            <p>عميل سعيد</p>
+        </div>
+
+        <div class="stat">
+            <h2 class="counter" data-target="1200">0</h2>
+            <p>منتج متوفر</p>
+        </div>
+
+        <div class="stat">
+            <h2 class="counter" data-target="15">0</h2>
+            <p>سنوات خبرة</p>
+        </div>
+
+        <div class="stat">
+            <h2 class="counter" data-target="98">0</h2>
+            <p>نسبة رضا العملاء %</p>
+        </div>
+
     </div>
 
-    <div class="footer-links">
-        <h4>Customer Service</h4>
-        <a href="#">Contact Us</a>
-        <a href="#">Shipping Policy</a>
-        <a href="#">Returns & Refunds</a>
-        <a href="#">Privacy Policy</a>
+</section>
+
+<!-- Reviews -->
+
+<section id="reviews" class="reveal">
+
+    <div class="section-heading">
+        <h2>عملاؤنا <span>بيتكلموا</span></h2>
+        <p>ثقة عملائنا هي نجاحنا الحقيقي</p>
+    </div>
+
+    <div class="reviews">
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>تجربة ممتازة، المنتجات أصلية والأسعار مناسبة جداً. وخدمة العملاء محترمة.</p>
+            <h4>أحمد محمد</h4>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>اشتريت غسالة وكانت تجربة الشراء والتوصيل ممتازة وسريعة جداً.</p>
+            <h4>محمد علي</h4>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>تنوع كبير في الأجهزة وعروض ممتازة. أكيد هتعامل معاهم مرة تانية.</p>
+            <h4>محمود حسن</h4>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Newsletter -->
+
+<section class="reveal">
+
+    <div class="newsletter">
+        <h2>خليك أول واحد يعرف عروضنا!</h2>
+        <p>اشترك عشان توصلك أحدث المنتجات والخصومات.</p>
+
+        <form id="newsletterForm">
+            <input type="email" placeholder="اكتب بريدك الإلكتروني" required>
+            <button type="submit">اشترك الآن</button>
+        </form>
+    </div>
+
+</section>
+
+<!-- Footer -->
+
+<footer id="contact">
+
+    <div class="footer-content">
+
+        <div>
+            <div class="logo">VOL<span>TEX.</span></div>
+            <p>
+                وجهتك المثالية لشراء الأجهزة الكهربائية والمنزلية.
+                جودة مضمونة وخدمة مميزة وأسعار تنافسية.
+            </p>
+
+            <div class="socials">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <div>
+            <h3>روابط سريعة</h3>
+            <a href="#home">الرئيسية</a>
+            <a href="#categories">الأقسام</a>
+            <a href="#products">المنتجات</a>
+            <a href="#reviews">آراء العملاء</a>
+        </div>
+
+        <div>
+            <h3>تواصل معنا</h3>
+            <p><i class="fas fa-phone"></i> 01000000000</p>
+            <p><i class="fas fa-envelope"></i> info@voltex.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+        </div>
+
     </div>
 
     <div class="copyright">
-        © 2026 ELECTRO. All Rights Reserved.
+        <p>© 2026 VOLTEX. جميع الحقوق محفوظة.</p>
     </div>
+
 </footer>
+
+<a href="https://wa.me/201000000000" class="whatsapp" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <script>
 
-// MOBILE MENU
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
+// Scroll Reveal Animation
 
-menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('show'));
-});
-
-// SHOPPING CART
-let cart = 0;
-const cartCount = document.getElementById('cartCount');
-
-document.querySelectorAll('.add-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        cart++;
-        cartCount.textContent = cart;
-
-        button.textContent = '✓ ADDED TO CART';
-        button.style.background = '#00d4ff';
-        button.style.color = '#080d16';
-
-        setTimeout(() => {
-            button.textContent = 'ADD TO CART +';
-            button.style.background = 'transparent';
-            button.style.color = '#00d4ff';
-        }, 1200);
-    });
-});
-
-// SCROLL REVEAL ANIMATION
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting) {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target);
         }
     });
-}, { threshold: 0.12 });
+}, {threshold: 0.12});
 
-document.querySelectorAll('.reveal').forEach(element => {
-    observer.observe(element);
+document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
 });
 
-// NEWSLETTER
+// Animated Counters
+
+const counters = document.querySelectorAll('.counter');
+
+const counterObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+            const duration = 1800;
+            const start = performance.now();
+
+            function update(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                counter.textContent = Math.floor(target * eased).toLocaleString('en-US');
+
+                if(progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+
+            requestAnimationFrame(update);
+            obs.unobserve(counter);
+        }
+    });
+}, {threshold: 0.5});
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+// Newsletter Demo
+
 document.getElementById('newsletterForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('Thank you for subscribing to ELECTRO!');
+    alert('شكراً لاشتراكك! سيتم التواصل معك قريباً.');
     this.reset();
+});
+
+// Product Hover Effect
+
+document.querySelectorAll('.product').forEach(product => {
+    product.addEventListener('mousemove', (e) => {
+        const rect = product.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        product.style.background =
+            `radial-gradient(circle at ${x}px ${y}px, #203c55, #101827 65%)`;
+    });
+
+    product.addEventListener('mouseleave', () => {
+        product.style.background = '';
+    });
 });
 
 </script>
 
 </body>
 </html>
+
 
