@@ -1,897 +1,820 @@
 
+
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LUMÉ Beauty - اكتشفي عالم الجمال والعناية بالبشرة مع أفضل منتجات التجميل الأصلية.">
-    <title>LUMÉ Beauty | عالمك للجمال</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary: #a66b76;
-            --primary-dark: #84515c;
-            --pink-light: #f8eeee;
-            --cream: #fbf8f5;
-            --dark: #30272a;
-            --muted: #817579;
-            --white: #ffffff;
-            --border: #eee5e3;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--white);
-            color: var(--dark);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .announcement {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 9px 15px;
-            font-size: 12px;
-            letter-spacing: .3px;
-        }
-
-        .navbar {
-            height: 82px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            border-bottom: 1px solid var(--border);
-            background: white;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-dark);
-            letter-spacing: 3px;
-        }
-
-        .logo span {
-            color: var(--dark);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .nav-links a {
-            transition: .3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 20px;
-            font-size: 20px;
-        }
-
-        .nav-actions a:hover {
-            color: var(--primary);
-        }
-
-        .hero {
-            min-height: 590px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: var(--pink-light);
-            overflow: hidden;
-        }
-
-        .hero-content {
-            padding: 100px 12% 80px 8%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .eyebrow {
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 4.5vw, 61px);
-            line-height: 1.45;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            color: var(--muted);
-            font-size: 15px;
-            line-height: 2.2;
-            max-width: 480px;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 13px 32px;
-            border: 1px solid var(--primary);
-            font-size: 13px;
-            font-weight: 700;
-            transition: .3s;
-        }
-
-        .btn:hover {
-            background: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .hero-image {
-            min-height: 590px;
-            background:
-                linear-gradient(to left, rgba(0,0,0,.02), transparent),
-                url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=85') center/cover;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            padding: 35px 7%;
-            border-bottom: 1px solid var(--border);
-            gap: 20px;
-        }
-
-        .feature {
-            text-align: center;
-        }
-
-        .feature .icon {
-            font-size: 25px;
-            margin-bottom: 8px;
-        }
-
-        .feature h3 {
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
-
-        .feature p {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .section {
-            padding: 85px 7%;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .section-heading .eyebrow {
-            margin-bottom: 8px;
-        }
-
-        .section-heading h2 {
-            font-size: 30px;
-            font-weight: 800;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-top: 10px;
-        }
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-        }
-
-        .category-card {
-            position: relative;
-            height: 320px;
-            overflow: hidden;
-            background: var(--cream);
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .6s;
-        }
-
-        .category-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .category-overlay {
-            position: absolute;
-            inset: auto 0 0;
-            padding: 35px 15px 20px;
-            text-align: center;
-            color: white;
-            background: linear-gradient(transparent, rgba(0,0,0,.65));
-        }
-
-        .category-overlay h3 {
-            font-size: 20px;
-        }
-
-        .category-overlay span {
-            font-size: 11px;
-        }
-
-        .products-section {
-            background: var(--cream);
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-        }
-
-        .product-card {
-            background: white;
-            overflow: hidden;
-            transition: .3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 35px rgba(60,30,30,.08);
-        }
-
-        .product-image {
-            position: relative;
-            height: 260px;
-            background: #f5eeee;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: .5s;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.06);
-        }
-
-        .tag {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: white;
-            color: var(--primary-dark);
-            padding: 5px 12px;
-            font-size: 10px;
-            font-weight: 800;
-        }
-
-        .product-info {
-            padding: 18px;
-        }
-
-        .product-category {
-            color: var(--muted);
-            font-size: 10px;
-            margin-bottom: 7px;
-        }
-
-        .product-info h3 {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .rating {
-            color: #c49548;
-            font-size: 12px;
-            margin-bottom: 12px;
-        }
-
-        .price-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .price {
-            color: var(--primary-dark);
-            font-size: 15px;
-            font-weight: 800;
-        }
-
-        .old-price {
-            color: #aaa;
-            text-decoration: line-through;
-            font-size: 11px;
-            margin-right: 5px;
-        }
-
-        .add-btn {
-            border: 1px solid var(--border);
-            background: white;
-            color: var(--primary);
-            padding: 7px 12px;
-            font-size: 11px;
-            transition: .3s;
-        }
-
-        .add-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .promo {
-            margin: 0 7% 85px;
-            min-height: 330px;
-            background:
-                linear-gradient(90deg, rgba(48,39,42,.82), rgba(48,39,42,.15)),
-                url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1600&q=85') center/cover;
-            display: flex;
-            align-items: center;
-            padding: 50px 8%;
-            color: white;
-        }
-
-        .promo-content {
-            max-width: 460px;
-        }
-
-        .promo .eyebrow {
-            color: #f4cbd1;
-        }
-
-        .promo h2 {
-            font-size: 36px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .promo p {
-            font-size: 13px;
-            line-height: 2;
-            margin-bottom: 22px;
-            color: #eee;
-        }
-
-        .promo .btn {
-            background: white;
-            color: var(--dark);
-            border-color: white;
-        }
-
-        .promo .btn:hover {
-            background: var(--pink-light);
-        }
-
-        .newsletter {
-            background: var(--pink-light);
-            padding: 70px 20px;
-            text-align: center;
-        }
-
-        .newsletter h2 {
-            font-size: 27px;
-            margin-bottom: 10px;
-        }
-
-        .newsletter p {
-            color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 22px;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 470px;
-            margin: auto;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            min-width: 0;
-            border: 1px solid var(--border);
-            background: white;
-            padding: 14px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .newsletter-form button {
-            border: none;
-            background: var(--dark);
-            color: white;
-            padding: 0 25px;
-            font-size: 12px;
-        }
-
-        footer {
-            background: #30272a;
-            color: white;
-            padding: 55px 7% 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 35px;
-            padding-bottom: 40px;
-        }
-
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 29px;
-            letter-spacing: 3px;
-            color: #e7b9c1;
-            margin-bottom: 15px;
-        }
-
-        .footer-about p {
-            color: #c0b4b7;
-            font-size: 12px;
-            line-height: 2.2;
-            max-width: 300px;
-        }
-
-        .footer-column h3 {
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        .footer-column a {
-            display: block;
-            color: #c0b4b7;
-            font-size: 12px;
-            margin-bottom: 12px;
-            transition: .3s;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .copyright {
-            border-top: 1px solid #514449;
-            padding-top: 20px;
-            text-align: center;
-            color: #a99da0;
-            font-size: 11px;
-        }
-
-        @media (max-width: 1000px) {
-            .nav-links {
-                gap: 15px;
-            }
-
-            .categories, .products {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 700px) {
-            .navbar {
-                height: 70px;
-                padding: 0 5%;
-            }
-
-            .logo {
-                font-size: 25px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-actions {
-                gap: 12px;
-                font-size: 18px;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content {
-                padding: 65px 7%;
-                align-items: center;
-                text-align: center;
-            }
-
-            .hero-image {
-                min-height: 330px;
-                grid-row: 1;
-            }
-
-            .features {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 30px 5%;
-            }
-
-            .section {
-                padding: 60px 5%;
-            }
-
-            .section-heading h2 {
-                font-size: 24px;
-            }
-
-            .categories, .products {
-                gap: 12px;
-            }
-
-            .category-card {
-                height: 230px;
-            }
-
-            .product-image {
-                height: 190px;
-            }
-
-            .product-info {
-                padding: 12px;
-            }
-
-            .product-info h3 {
-                font-size: 12px;
-            }
-
-            .price {
-                font-size: 12px;
-            }
-
-            .add-btn {
-                padding: 6px 8px;
-                font-size: 10px;
-            }
-
-            .promo {
-                margin: 0 5% 60px;
-                min-height: 300px;
-                padding: 35px 7%;
-                background-position: center;
-            }
-
-            .promo h2 {
-                font-size: 27px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 25px 15px;
-            }
-
-            .footer-about {
-                grid-column: 1 / -1;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELECTRO | Smart Home Store</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #080d16;
+    --card: #111a29;
+    --primary: #00d4ff;
+    --secondary: #7c5cff;
+    --white: #f5f8ff;
+    --muted: #929eb1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+
+/* NAVBAR */
+
+.navbar {
+    height: 85px;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,13,22,.92);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span { color: var(--primary); }
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    transition: .3s;
+}
+
+.nav-links a:hover { color: var(--primary); }
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart {
+    position: relative;
+    font-size: 23px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--primary);
+    color: #080d16;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 3px 6px;
+    border-radius: 50%;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 25px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 650px;
+    padding: 80px 8%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+    linear-gradient(90deg, #080d16 0%, rgba(8,13,22,.95) 35%, rgba(8,13,22,.2) 100%),
+    url('https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    filter: blur(180px);
+    opacity: .15;
+    right: 10%;
+}
+
+.hero-content {
+    max-width: 620px;
+    position: relative;
+    z-index: 2;
+    animation: slideUp 1s ease;
+}
+
+.tag {
+    color: var(--primary);
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 6vw, 78px);
+    line-height: 1.08;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    color: #bac4d3;
+    line-height: 1.9;
+    max-width: 480px;
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 30px;
+    background: var(--primary);
+    color: #07111c;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 13px;
+    transition: .3s;
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,212,255,.3);
+}
+
+.hero-note {
+    margin-top: 25px;
+    color: #aab4c4;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* FEATURES */
+
+.features {
+    padding: 35px 8%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    background: #0d1420;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    background: rgba(0,212,255,.1);
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+.feature h4 { font-size: 13px; margin-bottom: 5px; }
+.feature p { font-size: 10px; color: var(--muted); }
+
+/* SECTION */
+
+.section {
+    padding: 100px 8%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 45px;
+}
+
+.section-label {
+    color: var(--primary);
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.section h2 {
+    font-size: clamp(28px,4vw,42px);
+    font-weight: 800;
+}
+
+.section-desc {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+/* CATEGORIES */
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.category {
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.category img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .7s;
+    filter: brightness(.65);
+}
+
+.category:hover img {
+    transform: scale(1.12);
+    filter: brightness(.4);
+}
+
+.category-info {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+}
+
+.category-info h3 { font-size: 19px; margin-bottom: 7px; }
+.category-info span { color: var(--primary); font-size: 11px; }
+
+/* PRODUCTS */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 22px;
+}
+
+.product {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0,212,255,.5);
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.product-img {
+    height: 230px;
+    background: #172235;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .6s;
+}
+
+.product:hover .product-img img { transform: scale(1.08); }
+
+.discount {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--secondary);
+    padding: 7px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.product-info { padding: 20px; }
+
+.product-category {
+    color: var(--primary);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.product-info h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.rating {
+    color: #ffc857;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.price strong { font-size: 18px; color: var(--primary); }
+.price del { font-size: 12px; color: #788397; }
+
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    border-radius: 5px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.add-btn:hover {
+    background: var(--primary);
+    color: #080d16;
+}
+
+/* PROMO */
+
+.promo {
+    margin: 0 8%;
+    padding: 65px;
+    border-radius: 15px;
+    background:
+    linear-gradient(90deg,rgba(8,13,22,.98),rgba(8,13,22,.4)),
+    url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1600&q=85')
+    center/cover;
+    display: flex;
+    align-items: center;
+}
+
+.promo-content { max-width: 500px; }
+.promo h2 { font-size: 38px; margin: 20px 0; line-height: 1.2; }
+.promo p { color: #b8c2d0; line-height: 1.8; margin-bottom: 25px; }
+
+/* NEWSLETTER */
+
+.newsletter {
+    margin-top: 100px;
+    padding: 80px 8%;
+    background: #101a29;
+    text-align: center;
+}
+
+.newsletter h2 { font-size: 32px; margin-bottom: 15px; }
+.newsletter p { color: var(--muted); margin-bottom: 30px; font-size: 13px; }
+
+.newsletter form {
+    max-width: 480px;
+    display: flex;
+    margin: auto;
+}
+
+.newsletter input {
+    flex: 1;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid #263449;
+    background: #080d16;
+    color: white;
+    outline: none;
+}
+
+.newsletter button { border-radius: 0 5px 5px 0; }
+
+/* FOOTER */
+
+footer {
+    padding: 55px 8%;
+    background: #070b12;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-text {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+    max-width: 300px;
+    margin-top: 15px;
+}
+
+.footer-links h4 { margin-bottom: 20px; }
+.footer-links a {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.footer-links a:hover { color: var(--primary); }
+
+.copyright {
+    width: 100%;
+    padding-top: 25px;
+    border-top: 1px solid #1c2737;
+    color: #667286;
+    font-size: 11px;
+}
+
+/* ANIMATIONS */
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s, transform .8s;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px) {
+    .products { grid-template-columns: repeat(2,1fr); }
+    .categories { grid-template-columns: repeat(2,1fr); }
+    .features { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:650px) {
+    .navbar { padding: 0 5%; height: 70px; }
+    .menu-btn { display: block; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: #101a29;
+        flex-direction: column;
+        gap: 25px;
+    }
+    .nav-links.show { display: flex; }
+    .hero { min-height: 550px; padding: 60px 6%; }
+    .section { padding: 65px 6%; }
+    .products { grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .product-img { height: 160px; }
+    .product-info { padding: 12px; }
+    .product-info h3 { font-size: 12px; }
+    .price strong { font-size: 14px; }
+    .categories { gap: 12px; }
+    .category { height: 160px; }
+    .category-info { left: 12px; bottom: 15px; }
+    .category-info h3 { font-size: 14px; }
+    .features { padding: 25px 6%; gap: 20px 10px; }
+    .feature h4 { font-size: 11px; }
+    .feature p { font-size: 9px; }
+    .promo { margin: 0 5%; padding: 40px 25px; }
+    .promo h2 { font-size: 28px; }
+    .section-header { align-items: start; }
+    .newsletter form { flex-direction: column; gap: 10px; }
+    .newsletter button { border-radius: 5px; }
+}
+</style>
 </head>
 
 <body>
 
-    <div class="announcement">
-        ✨ استمتعي بعالم الجمال — شحن مجاني للطلبات فوق 1500 جنيه
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="#" class="logo">ELEC<span>TRO.</span></a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About Us</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <button class="cart" aria-label="Shopping cart">
+            🛒 <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+    <div class="hero-content">
+        <div class="tag">THE FUTURE OF HOME LIVING</div>
+
+        <h1>Upgrade Your<br>Home With <span>Smart</span><br>Technology.</h1>
+
+        <p>
+            Discover premium home appliances designed to make
+            your life easier, smarter and more comfortable.
+            Experience innovation in every detail.
+        </p>
+
+        <a href="#products" class="btn">EXPLORE PRODUCTS →</a>
+
+        <div class="hero-note">PREMIUM QUALITY • SMART LIVING • BEST PRICES</div>
+    </div>
+</header>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="feature">
+        <div class="feature-icon">🚚</div>
+        <div><h4>Free Delivery</h4><p>On selected orders</p></div>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <div><h4>Official Warranty</h4><p>100% authentic products</p></div>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">💳</div>
+        <div><h4>Secure Payment</h4><p>Safe checkout experience</p></div>
+    </div>
+    <div class="feature">
+        <div class="feature-icon">🎧</div>
+        <div><h4>24/7 Support</h4><p>We're here to help</p></div>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+    <div class="section-header reveal">
+        <div>
+            <div class="section-label">EXPLORE OUR COLLECTION</div>
+            <h2>Shop By Category</h2>
+            <p class="section-desc">Find the perfect appliances for every corner of your home.</p>
+        </div>
     </div>
 
-    <header class="navbar">
-        <a href="#" class="logo">LUMÉ<span>.</span></a>
-
-        <ul class="nav-links">
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#categories">الأقسام</a></li>
-            <li><a href="#products">منتجاتنا</a></li>
-            <li><a href="#offers">العروض</a></li>
-            <li><a href="#contact">تواصل معنا</a></li>
-        </ul>
-
-        <div class="nav-actions">
-            <a href="#products" aria-label="بحث">⌕</a>
-            <a href="#contact" aria-label="حسابي">♙</a>
-            <a href="#products" aria-label="سلة التسوق">♡</a>
-        </div>
-    </header>
-
-    <main>
-
-        <section class="hero">
-            <div class="hero-content">
-                <span class="eyebrow">YOUR BEAUTY, YOUR POWER</span>
-
-                <h1>
-                    جمالك يبدأ من
-                    <span>اهتمامك بنفسك</span>
-                </h1>
-
-                <p>
-                    اكتشفي مجموعتنا المختارة من مستحضرات التجميل
-                    والعناية بالبشرة، لأنك تستحقين الأفضل في كل يوم.
-                </p>
-
-                <a href="#products" class="btn">اكتشفي المجموعة ←</a>
-            </div>
-
-            <div class="hero-image"></div>
-        </section>
-
-        <section class="features">
-            <div class="feature">
-                <div class="icon">✦</div>
-                <h3>منتجات أصلية</h3>
-                <p>جودة تثقين بها</p>
-            </div>
-
-            <div class="feature">
-                <div class="icon">♡</div>
-                <h3>اختيارات مميزة</h3>
-                <p>منتجات مختارة بعناية</p>
-            </div>
-
-            <div class="feature">
-                <div class="icon">♧</div>
-                <h3>توصيل سريع</h3>
-                <p>لحد باب بيتك</p>
-            </div>
-
-            <div class="feature">
-                <div class="icon">✉</div>
-                <h3>دعم العملاء</h3>
-                <p>دائمًا هنا لمساعدتك</p>
-            </div>
-        </section>
-
-        <section class="section" id="categories">
-            <div class="section-heading">
-                <span class="eyebrow">EXPLORE OUR WORLD</span>
-                <h2>تسوقي حسب القسم</h2>
-                <p>كل ما تحتاجينه لإطلالة متكاملة في مكان واحد</p>
-            </div>
-
-            <div class="categories">
-
-                <a href="#products" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80" alt="العناية بالبشرة">
-                    <div class="category-overlay">
-                        <h3>العناية بالبشرة</h3>
-                        <span>اكتشفي المجموعة ←</span>
-                    </div>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80" alt="المكياج">
-                    <div class="category-overlay">
-                        <h3>المكياج</h3>
-                        <span>اكتشفي المجموعة ←</span>
-                    </div>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=80" alt="العطور">
-                    <div class="category-overlay">
-                        <h3>العطور</h3>
-                        <span>اكتشفي المجموعة ←</span>
-                    </div>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=80" alt="العناية بالشعر">
-                    <div class="category-overlay">
-                        <h3>العناية بالشعر</h3>
-                        <span>اكتشفي المجموعة ←</span>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <section class="section products-section" id="products">
-            <div class="section-heading">
-                <span class="eyebrow">OUR BEST SELLERS</span>
-                <h2>الأكثر مبيعًا</h2>
-                <p>اختيارات عملائنا المفضلة</p>
-            </div>
-
-            <div class="products">
-
-                <article class="product-card">
-                    <div class="product-image">
-                        <span class="tag">الأكثر طلبًا</span>
-                        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80" alt="سيروم للعناية بالبشرة">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">العناية بالبشرة</div>
-                        <h3>سيروم الترطيب اليومي</h3>
-                        <div class="rating">★★★★★ <span style="color:#999">(4.9)</span></div>
-                        <div class="price-row">
-                            <div class="price">450 ج.م</div>
-                            <button class="add-btn" onclick="addToCart('سيروم الترطيب اليومي')">+ أضيفي للسلة</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">
-                        <span class="tag">جديد</span>
-                        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80" alt="أحمر شفاه">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">المكياج</div>
-                        <h3>أحمر شفاه Matte Luxury</h3>
-                        <div class="rating">★★★★★ <span style="color:#999">(4.8)</span></div>
-                        <div class="price-row">
-                            <div class="price">320 ج.م</div>
-                            <button class="add-btn" onclick="addToCart('أحمر شفاه Matte Luxury')">+ أضيفي للسلة</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">
-                        <span class="tag">خصم 15%</span>
-                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=80" alt="عطر">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">العطور</div>
-                        <h3>عطر Floral Elegance</h3>
-                        <div class="rating">★★★★★ <span style="color:#999">(4.7)</span></div>
-                        <div class="price-row">
-                            <div class="price">680 ج.م <span class="old-price">800</span></div>
-                            <button class="add-btn" onclick="addToCart('عطر Floral Elegance')">+ أضيفي للسلة</button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80" alt="كريم مرطب">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">العناية بالبشرة</div>
-                        <h3>كريم الترطيب الفاخر</h3>
-                        <div class="rating">★★★★★ <span style="color:#999">(4.9)</span></div>
-                        <div class="price-row">
-                            <div class="price">390 ج.م</div>
-                            <button class="add-btn" onclick="addToCart('كريم الترطيب الفاخر')">+ أضيفي للسلة</button>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <section class="promo" id="offers">
-            <div class="promo-content">
-                <span class="eyebrow">SPECIAL OFFER</span>
-                <h2>لأن جمالك يستحق المزيد</h2>
-                <p>
-                    استمتعي بعروضنا الحصرية على مجموعة مختارة
-                    من منتجات العناية والجمال لفترة محدودة.
-                </p>
-                <a href="#products" class="btn">تسوقي الآن</a>
-            </div>
-        </section>
-
-        <section class="newsletter" id="contact">
-            <span class="eyebrow">STAY IN TOUCH</span>
-            <h2>كوني أول من يعرف جديدنا</h2>
-            <p>اشتركي في نشرتنا البريدية لتصلك أحدث المنتجات والعروض.</p>
-
-            <form class="newsletter-form" onsubmit="subscribe(event)">
-                <input type="email" placeholder="بريدك الإلكتروني" required>
-                <button type="submit">اشتراك</button>
-            </form>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-content">
-
-            <div class="footer-about">
-                <div class="footer-logo">LUMÉ.</div>
-                <p>
-                    عالم من الجمال والعناية صُمم ليمنحك تجربة تسوق
-                    مميزة ومنتجات تساعدك على الاهتمام بنفسك كل يوم.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h3>روابط سريعة</h3>
-                <a href="#">الرئيسية</a>
-                <a href="#categories">الأقسام</a>
-                <a href="#products">منتجاتنا</a>
-                <a href="#offers">العروض</a>
-            </div>
-
-            <div class="footer-column">
-                <h3>خدمة العملاء</h3>
-                <a href="#contact">تواصل معنا</a>
-                <a href="#contact">سياسة الاستبدال</a>
-                <a href="#contact">سياسة الخصوصية</a>
-                <a href="#contact">الأسئلة الشائعة</a>
-            </div>
-
-            <div class="footer-column">
-                <h3>تابعينا</h3>
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">TikTok</a>
-                <a href="#">WhatsApp</a>
-            </div>
-
+    <div class="categories">
+        <div class="category reveal">
+            <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=80" alt="Washing machines" loading="lazy">
+            <div class="category-info"><h3>Washing Machines</h3><span>EXPLORE →</span></div>
         </div>
 
-        <div class="copyright">
-            © 2026 LUMÉ Beauty. جميع الحقوق محفوظة.
+        <div class="category reveal">
+            <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=80" alt="Refrigerators" loading="lazy">
+            <div class="category-info"><h3>Refrigerators</h3><span>EXPLORE →</span></div>
         </div>
-    </footer>
 
-    <script>
-        let cartCount = 0;
+        <div class="category reveal">
+            <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80" alt="Smart TVs" loading="lazy">
+            <div class="category-info"><h3>Smart TVs</h3><span>EXPLORE →</span></div>
+        </div>
 
-        function addToCart(productName) {
-            cartCount++;
-            alert('تمت إضافة ' + productName + ' للسلة بنجاح! عدد المنتجات: ' + cartCount);
+        <div class="category reveal">
+            <img src="https://images.unsplash.com/photo-1631545806609-8b5b4e5c3d3b?auto=format&fit=crop&w=700&q=80" alt="Kitchen appliances" loading="lazy">
+            <div class="category-info"><h3>Home Appliances</h3><span>EXPLORE →</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products" style="background:#0c131f;">
+    <div class="section-header reveal">
+        <div>
+            <div class="section-label">BEST SELLING PRODUCTS</div>
+            <h2>Featured Products</h2>
+            <p class="section-desc">Quality products. Exceptional performance. Smart prices.</p>
+        </div>
+    </div>
+
+    <div class="products">
+
+        <div class="product reveal">
+            <div class="product-img">
+                <span class="discount">-20%</span>
+                <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=700&q=85" alt="Washing machine" loading="lazy">
+            </div>
+            <div class="product-info">
+                <div class="product-category">LAUNDRY</div>
+                <h3>Premium Washing Machine</h3>
+                <div class="rating">★★★★★ <span style="color:#8994a7;">(120)</span></div>
+                <div class="price"><strong>EGP 18,500</strong><del>EGP 23,000</del></div>
+                <button class="add-btn">ADD TO CART +</button>
+            </div>
+        </div>
+
+        <div class="product reveal">
+            <div class="product-img">
+                <span class="discount">-15%</span>
+                <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=700&q=85" alt="Refrigerator" loading="lazy">
+            </div>
+            <div class="product-info">
+                <div class="product-category">REFRIGERATION</div>
+                <h3>Modern Smart Refrigerator</h3>
+                <div class="rating">★★★★★ <span style="color:#8994a7;">(98)</span></div>
+                <div class="price"><strong>EGP 32,000</strong><del>EGP 38,000</del></div>
+                <button class="add-btn">ADD TO CART +</button>
+            </div>
+        </div>
+
+        <div class="product reveal">
+            <div class="product-img">
+                <span class="discount">-10%</span>
+                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=85" alt="Smart television" loading="lazy">
+            </div>
+            <div class="product-info">
+                <div class="product-category">ENTERTAINMENT</div>
+                <h3>4K Ultra HD Smart TV</h3>
+                <div class="rating">★★★★★ <span style="color:#8994a7;">(150)</span></div>
+                <div class="price"><strong>EGP 25,000</strong><del>EGP 28,000</del></div>
+                <button class="add-btn">ADD TO CART +</button>
+            </div>
+        </div>
+
+        <div class="product reveal">
+            <div class="product-img">
+                <span class="discount">-25%</span>
+                <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=85" alt="Kitchen appliances" loading="lazy">
+            </div>
+            <div class="product-info">
+                <div class="product-category">KITCHEN</div>
+                <h3>Premium Kitchen Collection</h3>
+                <div class="rating">★★★★★ <span style="color:#8994a7;">(85)</span></div>
+                <div class="price"><strong>EGP 12,500</strong><del>EGP 16,500</del></div>
+                <button class="add-btn">ADD TO CART +</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROMOTION -->
+<section class="promo reveal" id="about">
+    <div class="promo-content">
+        <div class="section-label">SPECIAL COLLECTION</div>
+        <h2>Make Your Home Smarter Than Ever.</h2>
+        <p>
+            Discover a new standard of comfort with our
+            carefully selected home appliances.
+        </p>
+        <a href="#products" class="btn">SHOP NOW →</a>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+    <div class="section-label">STAY CONNECTED</div>
+    <h2>Get Exclusive Offers</h2>
+    <p>Subscribe to our newsletter and never miss our latest deals.</p>
+    <form id="newsletterForm">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn">SUBSCRIBE</button>
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <a href="#" class="logo">ELEC<span>TRO.</span></a>
+        <p class="footer-text">
+            Bringing innovation and smart technology
+            to every home. Discover quality, reliability
+            and exceptional shopping experiences.
+        </p>
+    </div>
+
+    <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#about">About Us</a>
+    </div>
+
+    <div class="footer-links">
+        <h4>Customer Service</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Returns & Refunds</a>
+        <a href="#">Privacy Policy</a>
+    </div>
+
+    <div class="copyright">
+        © 2026 ELECTRO. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+
+// MOBILE MENU
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('show'));
+});
+
+// SHOPPING CART
+let cart = 0;
+const cartCount = document.getElementById('cartCount');
+
+document.querySelectorAll('.add-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        cart++;
+        cartCount.textContent = cart;
+
+        button.textContent = '✓ ADDED TO CART';
+        button.style.background = '#00d4ff';
+        button.style.color = '#080d16';
+
+        setTimeout(() => {
+            button.textContent = 'ADD TO CART +';
+            button.style.background = 'transparent';
+            button.style.color = '#00d4ff';
+        }, 1200);
+    });
+});
+
+// SCROLL REVEAL ANIMATION
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
         }
+    });
+}, { threshold: 0.12 });
 
-        function subscribe(event) {
-            event.preventDefault();
-            alert('شكرًا لاشتراكك في LUMÉ Beauty!');
-            event.target.reset();
-        }
-    </script>
+document.querySelectorAll('.reveal').forEach(element => {
+    observer.observe(element);
+});
+
+// NEWSLETTER
+document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for subscribing to ELECTRO!');
+    this.reset();
+});
+
+</script>
 
 </body>
 </html>
+
